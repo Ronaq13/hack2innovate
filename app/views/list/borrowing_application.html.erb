@@ -1,0 +1,24 @@
+<div class="my_container">
+  <div class="container">
+    <div class="row text-center">
+      <h2>Here are the people who can give you loan</h2>
+    </div>
+    <div class="row">
+      <div class="col">
+        <% @borrowapps.each do |x|  %>
+            <div class="card" style="margin: 20px; padding: 20px;">
+              <div class="card shadow_on_hover" style="padding: 20px;">
+                <div class="card-block">
+                  <h2 class="card-title"><%= User.find(x.lender_id).name %></h2>
+                  <p>Credit Score: <%= x.lender_credit %></p>
+                  <p>Identity Score: <%= x.lender_identity %></p>
+                  <p>Amount : <%= x.amount %></p>
+                  <%= link_to "Take from him", "particular_item/#{x.id}", method: :post ,class: "btn btn-primary" %>
+                </div>
+              </div>
+            </div>
+        <% end  %>
+      </div>
+    </div>
+  </div>
+</div>

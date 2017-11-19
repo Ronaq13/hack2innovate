@@ -1,0 +1,29 @@
+<div class="my_container">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="card my_shadow">
+          <img class="card-img-top" src="..." alt="borrowing image">
+          <div class="card-block">
+            <h2 class="card-title">Contract to Lend</h2>
+            <h6 class="card-subtitle mb-2 text-muted">This will be seen by other borrowers</h6>
+            <p>Credit Score: <%= @user.credit_score %></p>
+            <p>Identity Score: <%= @user.identity_score %></p>
+            <%= form_for @contract, url: contract_make_lend_path, method: :post do |f| %>
+                <div class="form-group">
+                  <label for="amount">Amount | You want to lend</label>
+                  <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <%= f.number_field :amount, class: "form-control" %>
+                  </div>
+                </div>
+                <%= f.submit "Make Contract", class: "btn btn-primary" %>
+            <% end  %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

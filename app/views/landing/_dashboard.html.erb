@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row d-flex flex-row justify-content-end align-items-end">
+    <div class="col">
+      <%= link_to "Lend", contract_lend_path %> &nbsp;
+      <%= link_to "Borrow", contract_borrow_path %>
+    </div>
+  </div>
+
+  <div class="row text-center">
+    <h1>Dashboard</h1>
+  </div>
+
+  <div class="row my_shadow" style="margin-top: 50px;pading: 10px;">
+    <h3>Borrowed</h3>
+    <% if elements = my_borrow_contracts(current_user.id) %>
+        <% elements.each do |e|  %>
+            <% status = e.lender_id.nil? ? "Pending" : "Accepted" %>
+          <div class="row">
+            <div class="col-xs-12 col-sm-3">
+              Amount : <%= e.amount %>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+              Status : <%= status %>
+            </div>
+          </div>
+        <% end  %>
+    <% else  %>
+       <small style="color: darkgray">You haven't borrowed anything</small>
+    <% end %>
+
+    <hr>
+
+    <h3>You Lended</h3>
+    <% if elements = my_lend_contracts(current_user.id) %>
+        <% elements.each do |e|  %>
+            <% status = e.borrower_id.nil? ? "Pending" : "Accepted" %>
+            <div class="row">
+              <div class="col-xs-12 col-sm-3">
+                Amount : <%= e.amount %>
+              </div>
+              <div class="col-xs-12 col-sm-3">
+                Status : <%= status %>
+              </div>
+            </div>
+        <% end  %>
+    <% else  %>
+        <small style="color: darkgray">You haven't borrowed anything</small>
+    <% end %>
+  </div>
+
+  <div class="row text-center" style="margin-top: 100px;">
+    <h1>Explore</h1>
+  </div>
+
+  <div class="row text-center" style="margin-top: 100px;">
+    <div class="col-xs-12 col-sm-6">
+      <%= link_to "Lend It", list_lending_appliction_path, class: "btn btn-primary" %>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <%= link_to "Take Borrow", list_borrowing_application_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

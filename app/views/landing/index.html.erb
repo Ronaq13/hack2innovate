@@ -1,0 +1,12 @@
+<% if !user_signed_in? %>
+    <%= render "shared/navbar" %>
+<% else %>
+  <div class="container">
+    <div class="row" style="padding: 10px;">
+      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+    </div>
+  </div>
+
+    <hr/>
+    <%= render partial: "dashboard" %>
+<% end %>
